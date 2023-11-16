@@ -42,17 +42,7 @@ class KategoriController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        $input = $request->all();
-
-        if ($image = $request->file('foto')) {
-            $destinationPath = 'images/';
-            $profileImage = "IMG-" . date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['foto'] = "$profileImage";
-        }
-        // dd($input);
-
-        Kategori::create($input);
+        Kategori::create($request->all());
 
         return redirect()->route('kategori.index')->with('success','Kategori created successfully.');
     }
@@ -110,5 +100,14 @@ class KategoriController extends Controller
         $kategori->delete();
 
         return redirect()->route('kategori.index')->with('success','Kategori deleted successfully');
+    }
+
+    public function getKategori(Request $request, $jenis_transaksi)
+    {
+        // Dapatkan data kategori berdasarkan jenis transaksi
+        $kategoriData = Kategori::where('tipe', $jenis_transaksi)->get();
+
+        // Kembalikan data dalam format JSON
+        return response()->json($kategoriData);
     }
 }

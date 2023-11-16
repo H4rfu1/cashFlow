@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::resource('kategori', KategoriController::class)->middleware('auth');
 Route::resource('transaksi', TransaksiController::class)->middleware('auth');
+// Rute tambahan untuk permintaan AJAX
+Route::get('/get-kategori/{jenis_transaksi}', [App\Http\Controllers\KategoriController::class, 'getKategori'])->name('get-kategori');
