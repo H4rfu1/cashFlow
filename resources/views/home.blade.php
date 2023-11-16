@@ -15,9 +15,9 @@
                     @endif
 
                     <div class="container">
-                        <h2>Saldo Saat Ini: {{ $saldo }}</h2>
-                        <h3>Total Pemasukan (all time): {{ $totalPemasukan }}</h3>
-                        <h3>Total Pengeluaran (all time): {{ $totalPengeluaran }}</h3>
+                        <h2>Saldo Saat Ini: {{ 'Rp ' . number_format($saldo, 2, ',', '.') }}</h2>
+                        <h3>Total Pemasukan (all time): {{ 'Rp ' . number_format($totalPemasukan, 2, ',', '.') }}</h3>
+                        <h3>Total Pengeluaran (all time): {{ 'Rp ' . number_format($totalPengeluaran, 2, ',', '.') }}</h3>
                     </div>
                 </div>
             </div>
