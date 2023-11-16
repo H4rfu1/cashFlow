@@ -12,6 +12,7 @@
                 </div>
             </div>
         </div>
+        <h3>Saldo Saat Ini: {{ 'Rp ' . number_format($saldo, 2, ',', '.') }}</h3>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success">

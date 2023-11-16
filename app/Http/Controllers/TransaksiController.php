@@ -15,6 +15,14 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
+        // Menghitung total pemasukan
+        $totalPemasukan = Transaksi::where('jenis_transaksi', 'Pemasukan')->sum('nominal');
+
+        // Menghitung total pengeluaran
+        $totalPengeluaran = Transaksi::where('jenis_transaksi', 'Pengeluaran')->sum('nominal');
+
+        // Menghitung saldo
+        $saldo = $totalPemasukan - $totalPengeluaran;
         if ($request->has('start_date') && $request->has('end_date')) {
             $start_date = $request->input('start_date');
             $end_date = $request->input('end_date');
@@ -32,7 +40,7 @@ class TransaksiController extends Controller
             ->oldest()
             ->paginate(5);
         }
-        return view('transaksi.index',compact('transaksi'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('transaksi.index',compact(['transaksi','saldo']))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
