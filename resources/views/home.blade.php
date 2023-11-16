@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="container">
+                        <h2>Saldo Saat Ini: {{ $saldo }}</h2>
+                        <h3>Total Pemasukan (all time): {{ $totalPemasukan }}</h3>
+                        <h3>Total Pengeluaran (all time): {{ $totalPengeluaran }}</h3>
+                    </div>
                 </div>
             </div>
         </div>
